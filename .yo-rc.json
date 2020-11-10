@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ro.cybersec"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "CybersecurityApp",
+    "packageName": "ro.cybersec",
+    "packageFolder": "ro/cybersec",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZTQyZjQ4YzAwYmRmZTA3NzYxNjNmZjk4N2Y2ZjcxNjM0NDZhNDg2MTIzNmRlYjZkYTQ0OTY4YThlMDdjNTI5YmQ3YWY2YzM4OGY1MmNkMGNmZWFjYTE0NGEwN2NmZmVmN2I2YWYyMDUwN2YwMDBjNjVjNmZlMGNiOTlmOWUxNTY=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "darkly",
+    "clientThemeVariant": "dark",
+    "creationTimestamp": 1605000155450,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
