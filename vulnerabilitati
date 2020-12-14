@@ -1,0 +1,14 @@
+- chiar daca nu esti admin si nu poti atribui roluri, vei avea un buton de roluri - implementat
+
+- parola sa stea in token -> implementat
+
+- rute care nu sunt direct accesibile -> ruta de api poate fi accesata de oriunde (implementat)
+
+- input de tip number (daca introduce altceva, sa faca ceva - sa mearga pe o ruta) - implementat - customer-> phone number - implementat
+
+- parola se poate vedea intr-un request de user list - implementat
+
+- parola poate fi vizibila in detalii la mai multe click uri - implementat
+
+
+vmware virtualbox

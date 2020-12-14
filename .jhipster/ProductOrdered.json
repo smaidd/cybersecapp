@@ -1,0 +1,49 @@
+{
+  "name": "ProductOrdered",
+  "fields": [
+    {
+      "fieldName": "quantity",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "shippingPrice",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "productOrdered",
+      "relationshipName": "product",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "warehouse",
+      "otherEntityRelationshipName": "productOrdered",
+      "relationshipName": "sellingCompany",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "order",
+      "otherEntityRelationshipName": "products",
+      "relationshipName": "order",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110104705",
+  "entityTableName": "product_ordered",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

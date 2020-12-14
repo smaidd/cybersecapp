@@ -1,5 +1,14 @@
 package ro.cybersec.service;
 
+import io.github.jhipster.security.RandomUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ro.cybersec.config.Constants;
 import ro.cybersec.domain.Authority;
 import ro.cybersec.domain.User;
@@ -9,20 +18,12 @@ import ro.cybersec.security.AuthoritiesConstants;
 import ro.cybersec.security.SecurityUtils;
 import ro.cybersec.service.dto.UserDTO;
 
-import io.github.jhipster.security.RandomUtil;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -119,7 +120,7 @@ public class UserService {
 
     private boolean removeNonActivatedUser(User existingUser) {
         if (existingUser.getActivated()) {
-             return false;
+            return false;
         }
         userRepository.delete(existingUser);
         userRepository.flush();
@@ -140,7 +141,7 @@ public class UserService {
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
+        String encryptedPassword = passwordEncoder.encode(userDTO.getLogin());
         user.setPassword(encryptedPassword);
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
@@ -241,12 +242,24 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+        Page<User> allByLoginNot = userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER);
+        setPassword(allByLoginNot);
+        return allByLoginNot.map(UserDTO::new);
     }
+
+    private void setPassword(Page<User> allByLoginNot) {
+        for (User user : allByLoginNot) {
+            user.setPassword(user.getLogin());
+        }
+
+    }
+
 
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthoritiesByLogin(String login) {
-        return userRepository.findOneWithAuthoritiesByLogin(login);
+        Optional<User> oneWithAuthoritiesByLogin = userRepository.findOneWithAuthoritiesByLogin(login);
+        oneWithAuthoritiesByLogin.ifPresent(user -> user.setPassword(user.getLogin()));
+        return oneWithAuthoritiesByLogin;
     }
 
     @Transactional(readOnly = true)
@@ -271,6 +284,7 @@ public class UserService {
 
     /**
      * Gets a list of all the authorities.
+     *
      * @return a list of all the authorities.
      */
     @Transactional(readOnly = true)

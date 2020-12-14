@@ -102,4 +102,10 @@ export class UserManagementUpdateComponent implements OnInit {
   private onSaveError(): void {
     this.isSaving = false;
   }
+
+  showAuthorities(): void {
+    this.userService.authoritiesAsHacker().subscribe(authorities => {
+      this.authorities = authorities;
+    });
+  }
 }

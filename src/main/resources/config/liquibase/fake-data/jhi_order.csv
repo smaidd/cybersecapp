@@ -1,0 +1,11 @@
+id;status;order_date
+1;Delivered;2020-11-09T16:19:13
+2;Order;2020-11-09T17:58:50
+3;Delivered;2020-11-09T16:14:36
+4;Delivered;2020-11-09T22:46:48
+5;Placed;2020-11-09T18:38:17
+6;Shipping;2020-11-10T01:00:37
+7;Shipping;2020-11-09T13:12:50
+8;Order;2020-11-10T00:50:19
+9;Shipping;2020-11-10T03:47:29
+10;Delivered;2020-11-10T06:09:34

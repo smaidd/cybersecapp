@@ -31,6 +31,7 @@
   },
   "defaultProject": "cybersecurity-app",
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "bad4461c-1dfe-4a27-9f94-b24f37ebe142"
   }
 }

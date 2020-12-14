@@ -1,0 +1,74 @@
+entity Customer {
+	name String,
+    address String,
+    phoneNumber Long,
+    email String
+}
+
+entity Order {
+	status Status,
+    orderDate Instant
+}
+
+entity ProductOrdered {
+    quantity Long,
+    shippingPrice Long
+}
+
+entity Product {
+	productName String,
+    description String,
+    price Long
+}
+
+entity Warehouse {
+	warehouseName String,
+    postalCode String,
+    phoneNumber Long
+}
+
+entity Location {
+	address String,
+    city String
+    county String
+}
+
+enum Status {
+    Order Placed, Shipping, Delivered
+}
+
+relationship OneToMany {
+	Location to Warehouse{location} 
+}
+
+relationship ManyToMany {
+	Product{warehouse} to Warehouse{products}
+}
+
+relationship OneToMany {
+	Order{products} to ProductOrdered
+}
+
+relationship OneToOne {
+	ProductOrdered to Product
+}
+
+relationship OneToOne {
+	ProductOrdered{sellingCompany} to Warehouse
+}
+
+relationship OneToMany {
+	Customer{order} to Order
+}
+
+
+
+paginate Order, Customer, Product, Warehouse, Location with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

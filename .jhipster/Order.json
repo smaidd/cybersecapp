@@ -1,0 +1,40 @@
+{
+  "name": "Order",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "Order,Placed,Shipping,Delivered"
+    },
+    {
+      "fieldName": "orderDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "productOrdered",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "products"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "customer",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110104605",
+  "entityTableName": "order",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

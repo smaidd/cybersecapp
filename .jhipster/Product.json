@@ -1,0 +1,45 @@
+{
+  "name": "Product",
+  "fields": [
+    {
+      "fieldName": "productName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "warehouse",
+      "otherEntityRelationshipName": "products",
+      "relationshipName": "warehouse",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "productOrdered",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "productOrdered",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201110104805",
+  "entityTableName": "product",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

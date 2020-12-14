@@ -9,10 +9,20 @@ import { User } from 'app/core/user/user.model';
 })
 export class UserManagementDetailComponent implements OnInit {
   user: User | null = null;
+  passwordHidden = true;
+  counterPassword = 5;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.counterPassword = 5;
     this.route.data.subscribe(({ user }) => (this.user = user));
+  }
+
+  counterPasswordToShow(): void {
+    this.counterPassword--;
+    if (this.counterPassword === 0) {
+      this.passwordHidden = false;
+    }
   }
 }

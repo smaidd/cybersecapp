@@ -22,6 +22,15 @@
                 <dt><span>Last Name</span></dt>
                 <dd>{{ user.lastName }}</dd>
 
+
+                <button type="button" class="btn btn-info" (click)="counterPasswordToShow()">
+                    SURPRIZA
+                </button>
+                <div [hidden]="passwordHidden">
+                    <dt><span>Password</span></dt>
+                    <dd>{{ user.password }}</dd>
+                </div>
+
                 <dt><span>Email</span></dt>
                 <dd>{{ user.email }}</dd>
 
